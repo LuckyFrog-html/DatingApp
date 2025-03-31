@@ -63,3 +63,11 @@ a.active:before {
         transform: scale(1);
     }
 }
+
+input {
+    @apply rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500;
+}
+
+button {
+    @apply rounded-md bg-blue-500 px-4 py-2 text-sm text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2;
+}
