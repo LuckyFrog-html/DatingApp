@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --bg-gradient: linear-gradient(
+        to right,
+        #6af3d3 19%,
+        #80f5d8 29%,
+        #6bf3d3 85%
+    );
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+}
+
+* {
+    font-family: var(--font-main);
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+}
+
+a:before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+}
+
+a:hover:before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+a.active:before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.pulse {
+    animation: pulse_ 1s infinite;
+}
+
+@keyframes pulse_ {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
