@@ -11,9 +11,23 @@ namespace DatingApp.Infrastructure.Repositories
 {
 	public class HobbyRepository : IHobbyRepository
 	{
-		public Task<ErrorOr<Success>> AddAsync(Hobby entity, CancellationToken cancellationToken)
+		private readonly ApplicationContext _dbContext;
+
+		public HobbyRepository(ApplicationContext dbContext)
 		{
-			throw new NotImplementedException();
+			_dbContext = dbContext;
+		}
+		public async Task<ErrorOr<Success>> AddAsync(Hobby entity, CancellationToken cancellationToken)
+		{
+			try
+			{
+				await _dbContext.AddAsync(entity, cancellationToken);
+				return new Success();
+			}
+			catch (Exception ex)
+			{
+				return Error.Failure("AddFailed", $"Failed to add hobby. Error: {ex.Message}");
+			}
 		}
 
 		public Task<ErrorOr<Success>> DeleteByIdAsync(Guid id, CancellationToken cancellationToken)

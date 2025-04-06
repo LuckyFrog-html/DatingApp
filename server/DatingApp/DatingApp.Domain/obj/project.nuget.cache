@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jVomud3Gp6M=",
+  "dgSpecHash": "ejclIunrMGg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
+  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\relog\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512"
   ],

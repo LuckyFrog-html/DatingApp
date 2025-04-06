@@ -208,7 +208,7 @@
         }
       }
     },
-    "/achievements": {
+    "/api/v1/Profile/achievements": {
       "get": {
         "tags": [
           "Profile"
