@@ -11,3 +11,16 @@ C:\Users\relog\OneDrive\Рабочий стол\kprpo\DatingApp\server\DatingApp
 C:\Users\relog\OneDrive\Рабочий стол\kprpo\DatingApp\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\refint\DatingApp.Domain.dll
 C:\Users\relog\OneDrive\Рабочий стол\kprpo\DatingApp\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.pdb
 C:\Users\relog\OneDrive\Рабочий стол\kprpo\DatingApp\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\ref\DatingApp.Domain.dll
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\bin\Debug\net8.0\DatingApp.Domain.deps.json
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\bin\Debug\net8.0\DatingApp.Domain.dll
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\bin\Debug\net8.0\DatingApp.Domain.pdb
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.csproj.AssemblyReference.cache
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.AssemblyInfoInputs.cache
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.AssemblyInfo.cs
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.sourcelink.json
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.dll
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\refint\DatingApp.Domain.dll
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\DatingApp.Domain.pdb
+C:\Users\relog\OneDrive\Рабочий стол\kporpo2.0\server\DatingApp\DatingApp.Domain\obj\Debug\net8.0\ref\DatingApp.Domain.dll

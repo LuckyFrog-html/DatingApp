@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj": {}
+    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj": {
+    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj",
+        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj",
         "projectName": "DatingApp.Api",
-        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj",
+        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj",
         "packagesPath": "C:\\Users\\relog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Api\\obj\\",
+        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,11 +33,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj": {
-                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj"
+              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj": {
+                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj"
               },
-              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj"
+              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj"
               }
             }
           }
@@ -96,14 +96,14 @@
         }
       }
     },
-    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj": {
+    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj",
+        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj",
         "projectName": "DatingApp.Application",
-        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj",
+        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj",
         "packagesPath": "C:\\Users\\relog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\obj\\",
+        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -125,8 +125,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj": {
-                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj"
+              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj": {
+                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj"
               }
             }
           }
@@ -176,14 +176,14 @@
         }
       }
     },
-    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj": {
+    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
         "projectName": "DatingApp.Domain",
-        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
+        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
         "packagesPath": "C:\\Users\\relog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\obj\\",
+        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -248,14 +248,14 @@
         }
       }
     },
-    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj": {
+    "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
         "projectName": "DatingApp.Infrastructure",
-        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\relog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -277,8 +277,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj": {
-                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj"
+              "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj": {
+                "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj"
               }
             }
           }

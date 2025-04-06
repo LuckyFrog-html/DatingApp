@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w80ftMUom/Q=",
+  "dgSpecHash": "Pl0w6FRjQ2c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj",
+  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Application\\DatingApp.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\relog\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512",
     "C:\\Users\\relog\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.2\\microsoft.entityframeworkcore.9.0.2.nupkg.sha512",

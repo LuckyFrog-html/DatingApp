@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HrRwzMwdn+A=",
+  "dgSpecHash": "Mp1QcLMfbdg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj",
+  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\DatingApp.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\relog\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512",
     "C:\\Users\\relog\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

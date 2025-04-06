@@ -33,7 +33,7 @@ namespace DatingApp.Api.Controllers
 		}
 
 		[Authorize(Policy = "user")]
-		[HttpGet("/achievements")]
+		[HttpGet("achievements")]
 		public async Task<ActionResult<ICollection<Achievement>>> GetAchievemnts
             (CancellationToken cancellationToken)
 		{
