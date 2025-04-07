@@ -2,6 +2,8 @@ using DatingApp.Application.Interfaces;
 using DatingApp.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Threading;
 
 namespace DatingApp.Api.Controllers
 {
@@ -13,17 +15,33 @@ namespace DatingApp.Api.Controllers
         private readonly ILogger<ProfileController> _logger;
         private readonly IProfileService _profileService;
 
-        public ProfileController(ILogger<ProfileController> logger)
+        public ProfileController(ILogger<ProfileController> logger,
+            IProfileService profileService)
         {
             _logger = logger;
+            _profileService = profileService;
         }
 
         [Authorize(Policy = "user")]
 		[HttpGet]
-        public int GetProfile()
+        public async Task<ActionResult<Profile>> GetProfile(CancellationToken cancellationToken)
         {
-            return 1;
-        }
+			Guid userId;
+			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.GetProfileByIdAsync(userId, cancellationToken);
+
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok(result.Value);
+		}
 
 		[Authorize(Policy = "user")]
 		[HttpPut]
@@ -42,7 +60,7 @@ namespace DatingApp.Api.Controllers
 
             if (!flag)
             {
-                return BadRequest();
+                return Unauthorized();
             }
             var result = await _profileService.GetAchievements(userId, cancellationToken);
 
@@ -53,6 +71,53 @@ namespace DatingApp.Api.Controllers
 
 			return Ok(result.Value);
 		}
+
+		[Authorize(Policy = "user")]
+		[HttpGet("hobbies")]
+		public async Task<ActionResult<ICollection<Hobby>>> GetHobbies
+			(CancellationToken cancellationToken)
+		{
+			Guid userId;
+			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.GetHobbies(userId, cancellationToken);
+
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok(result.Value);
+		}
+
+		[Authorize(Policy = "user")]
+		[HttpPost("hobbies")]
+		public async Task<ActionResult> AddHobbies
+			(ICollection<string> addedHobbies, CancellationToken cancellationToken)
+		{
+			Guid userId;
+			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.AddHobby(userId, addedHobbies, cancellationToken);
+
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok(result.Value);
+		}
+
+
+
 
 		[Authorize(Policy = "user")]
 		[HttpDelete]

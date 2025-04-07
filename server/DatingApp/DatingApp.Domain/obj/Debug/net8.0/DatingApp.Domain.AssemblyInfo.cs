@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DatingApp.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4932b55589ac13082bc4d63ea22ff03fb6035531")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38f8675ddd958d3045cd99308a72493a557fbcc7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DatingApp.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DatingApp.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

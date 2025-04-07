@@ -14,6 +14,7 @@ namespace DatingApp.Domain.Entities
 		public string Description { get; set; } = string.Empty;
 		public int Age { get; set; } = 0;
 		public string Town { get; set; } = string.Empty;
+		public bool Gender { get; set; } = false;
 		public BigInteger Balance { get; set; } = 0;
 		public User User { get; set; }
 		public ICollection<Hobby>? Hobbies { get; set; } = new List<Hobby>();

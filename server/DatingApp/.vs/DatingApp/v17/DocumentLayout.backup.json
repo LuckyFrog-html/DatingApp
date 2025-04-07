@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{29AD7510-C1BE-462B-9B8F-FBE2FC6402DB}|DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj|c:\\users\\relog\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\datingapp\\datingapp.infrastructure\\datingapp.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{29AD7510-C1BE-462B-9B8F-FBE2FC6402DB}|DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj|solutionrelative:datingapp.infrastructure\\datingapp.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{88E2F6BE-C3BC-43B4-942C-33CEFE61AA00}|DatingApp.Api\\DatingApp.Api.csproj|c:\\users\\relog\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\datingapp\\datingapp.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{88E2F6BE-C3BC-43B4-942C-33CEFE61AA00}|DatingApp.Api\\DatingApp.Api.csproj|solutionrelative:datingapp.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{88E2F6BE-C3BC-43B4-942C-33CEFE61AA00}|DatingApp.Api\\DatingApp.Api.csproj|c:\\users\\relog\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\datingapp\\datingapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{88E2F6BE-C3BC-43B4-942C-33CEFE61AA00}|DatingApp.Api\\DatingApp.Api.csproj|solutionrelative:datingapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29AD7510-C1BE-462B-9B8F-FBE2FC6402DB}|DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj|c:\\users\\relog\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\datingapp\\datingapp.infrastructure\\datingapp.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{29AD7510-C1BE-462B-9B8F-FBE2FC6402DB}|DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj|solutionrelative:datingapp.infrastructure\\datingapp.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{88E2F6BE-C3BC-43B4-942C-33CEFE61AA00}|DatingApp.Api\\DatingApp.Api.csproj|c:\\users\\relog\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\datingapp\\datingapp.api\\datingapp.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ProfileRepository.cs",
               "DocumentMoniker": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\Repositories\\ProfileRepository.cs",
               "RelativeDocumentMoniker": "DatingApp.Infrastructure\\Repositories\\ProfileRepository.cs",
@@ -78,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "DatingApp.Infrastructure.csproj",
               "DocumentMoniker": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
               "RelativeDocumentMoniker": "DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
@@ -86,7 +86,8 @@
               "RelativeToolTip": "DatingApp.Infrastructure\\DatingApp.Infrastructure.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-31T04:28:09.154Z"
+              "WhenOpened": "2025-03-31T04:28:09.154Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -102,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\Program.cs",
               "RelativeDocumentMoniker": "DatingApp.Api\\Program.cs",
@@ -114,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "DatingApp.Api\\Controllers\\ProfileController.cs",
@@ -162,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "HobbyRepository.cs",
               "DocumentMoniker": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\DatingApp.Infrastructure\\Repositories\\HobbyRepository.cs",
               "RelativeDocumentMoniker": "DatingApp.Infrastructure\\Repositories\\HobbyRepository.cs",
@@ -174,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\relog\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kporpo2.0\\server\\DatingApp\\DatingApp.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "DatingApp.Api\\Controllers\\AuthController.cs",

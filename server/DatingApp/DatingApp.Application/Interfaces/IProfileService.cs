@@ -1,4 +1,5 @@
 ﻿using DatingApp.Domain.Entities;
+using DatingApp.Domain.Interfaces.Repositories;
 using ErrorOr;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,14 @@ namespace DatingApp.Application.Interfaces
 
 		public Task<ErrorOr<ICollection<Achievement>>> GetAchievements(Guid userId, 
 			CancellationToken cancellationToken);
+
+		public Task<ErrorOr<Profile>> GetProfileByIdAsync(Guid userId,
+			CancellationToken cancellationToken);
+
+		public Task<ErrorOr<Success>> AddHobby(
+			Guid userId, ICollection<string> hobbyName, CancellationToken cancellationToken);
+		public Task<ErrorOr<ICollection<Hobby>>> GetHobbies(Guid userId,
+			CancellationToken cancellationToken);
+
 	}
 }
