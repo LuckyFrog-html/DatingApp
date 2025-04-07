@@ -56,6 +56,12 @@ namespace DatingApp.Api.Extensions
 							policy.RequireRole("admin", "user");
 
 						});
+
+					options.AddPolicy("moderator",
+						policy =>
+						{
+							policy.RequireRole("moderator", "user");
+						});
 				}
 			 );
 		}

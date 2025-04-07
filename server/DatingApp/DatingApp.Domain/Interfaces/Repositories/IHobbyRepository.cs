@@ -10,6 +10,6 @@ namespace DatingApp.Domain.Interfaces.Repositories
 {
 	public interface IHobbyRepository : IRepository<Hobby>
 	{
-		Task<ErrorOr<User>> GetByNameAsync(string name, CancellationToken cancellationToken);
+		Task<ErrorOr<Hobby>> GetByNameAsync(string name, CancellationToken cancellationToken);
 	}
 }

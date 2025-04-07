@@ -52,6 +52,7 @@ namespace DatingApp.Application.Services
 				Name = registerRequest.Name,
 				Age = registerRequest.Age,
 				Town = registerRequest.Town,
+				Gender = registerRequest.Gender,
 			};
 
 			user.Profile = profile;
