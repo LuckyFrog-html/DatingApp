@@ -27,7 +27,7 @@ namespace DatingApp.Application.Services
 			throw new NotImplementedException();
 		}
 
-		public async Task<ErrorOr<Success>> AddHobby(
+		public async Task<ErrorOr<Success>> AddHobbyAsync(
 			Guid userId, ICollection<string> addedHobbies, CancellationToken cancellationToken)
 		{
 			var profileResult = await _profileRepository.GetByIdAsync(userId, cancellationToken);
@@ -63,7 +63,7 @@ namespace DatingApp.Application.Services
 			return result.Value;
 		}
 
-		public async Task<ErrorOr<ICollection<Hobby>>> GetHobbies(Guid userId, 
+		public async Task<ErrorOr<ICollection<Hobby>>> GetHobbiesAsync(Guid userId, 
 			CancellationToken cancellationToken)
 		{
 			var profileResult = await _profileRepository.GetByIdAsync(userId, cancellationToken);
@@ -97,6 +97,19 @@ namespace DatingApp.Application.Services
 			}
 
 			return profileResult.Value;
+		}
+
+		public async Task<ErrorOr<Success>> MarkAsDeletedAsync(Guid userId, CancellationToken cancellationToken)
+		{
+			var profileResult = await _profileRepository.GetByIdAsync(userId, cancellationToken);
+			if (profileResult.IsError)
+			{
+				return profileResult.Errors;
+			}
+
+			var profile = profileResult.Value;
+			profile.IsDeleted = true;
+			return await _profileRepository.UpdateAsync(profile, cancellationToken); ;
 		}
 	}
 }
