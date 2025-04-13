@@ -20,9 +20,12 @@ namespace DatingApp.Application.Interfaces
 		public Task<ErrorOr<Profile>> GetProfileByIdAsync(Guid userId,
 			CancellationToken cancellationToken);
 
-		public Task<ErrorOr<Success>> AddHobby(
+		public Task<ErrorOr<Success>> AddHobbyAsync(
 			Guid userId, ICollection<string> hobbyName, CancellationToken cancellationToken);
-		public Task<ErrorOr<ICollection<Hobby>>> GetHobbies(Guid userId,
+		public Task<ErrorOr<ICollection<Hobby>>> GetHobbiesAsync(Guid userId,
+			CancellationToken cancellationToken);
+
+		public Task<ErrorOr<Success>> MarkAsDeletedAsync(Guid userId,
 			CancellationToken cancellationToken);
 
 	}
