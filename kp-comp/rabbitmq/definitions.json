@@ -1,0 +1,82 @@
+{
+  "users": [
+    {
+      "name": "rmquser",
+      "password": "rmqpassword",
+      "tags": ["administrator"]
+    }
+  ],
+
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+
+  "exchanges": [
+    {
+      "name": "app_events",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "vhost": "/"
+    }
+  ],
+"queues": [
+    {
+      "name": "neural_user_registration",
+      "durable": true,
+      "auto_delete": false,
+      "vhost": "/"
+    },
+    {
+      "name": "neural_profile_updates",
+      "durable": true,
+      "auto_delete": false,
+      "vhost": "/"
+    },
+    {
+      "name": "neural_preferences",
+      "durable": true,
+      "auto_delete": false,
+      "vhost": "/"
+    },
+    {
+      "name": "backend_recommendations",
+      "durable": true,
+      "auto_delete": false,
+      "vhost": "/"
+    }
+  ],
+  "bindings": [
+    {
+      "source": "app_events",
+      "destination": "neural_user_registration",
+      "routing_key": "user.registered",
+      "vhost": "/",
+      "destination_type": "queue"
+    },
+    {
+      "source": "app_events",
+      "destination": "neural_profile_updates",
+      "routing_key": "user.updated",
+      "vhost": "/",
+      "destination_type": "queue"
+    },
+    {
+      "source": "app_events",
+      "destination": "neural_preferences",
+      "routing_key": "user.preferences.#",
+      "vhost": "/",
+      "destination_type": "queue"
+    },
+    {
+      "source": "app_events",
+      "destination": "backend_recommendations",
+      "routing_key": "recommendations.generated",
+      "vhost": "/",
+      "destination_type": "queue"
+    }
+  ]
+
+}
