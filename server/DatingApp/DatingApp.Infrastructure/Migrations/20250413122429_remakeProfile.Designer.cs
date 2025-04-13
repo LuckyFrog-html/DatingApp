@@ -4,6 +4,7 @@ using System.Numerics;
 using DatingApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatingApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250413122429_remakeProfile")]
+    partial class remakeProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,23 +174,6 @@ namespace DatingApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("3bcca34e-96f9-4587-9d40-9cb0debfcf5a"),
-                            Name = "user"
-                        },
-                        new
-                        {
-                            Id = new Guid("8dde508d-6d11-4b9f-8db7-28eeb58117a6"),
-                            Name = "admin"
-                        },
-                        new
-                        {
-                            Id = new Guid("d7775f8c-3e4d-4fc0-a51d-8736178b352f"),
-                            Name = "moderator"
-                        });
                 });
 
             modelBuilder.Entity("DatingApp.Domain.Entities.User", b =>

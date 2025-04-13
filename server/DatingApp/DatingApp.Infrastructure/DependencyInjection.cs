@@ -26,6 +26,7 @@ namespace DatingApp.Infrastructure
 		{
 			services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 			services.AddScoped<IRoleRepository, RoleRepository>();
+			services.AddScoped<IHobbyRepository, HobbyRepository>();
 			services.AddScoped<IProfileRepository, ProfileRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
