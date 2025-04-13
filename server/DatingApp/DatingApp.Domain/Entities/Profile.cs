@@ -17,17 +17,19 @@ namespace DatingApp.Domain.Entities
 		public bool Gender { get; set; } = false;
 		public BigInteger Balance { get; set; } = 0;
 		public User User { get; set; }
+		public bool IsDeleted { get; set; } = false;
 		public ICollection<Hobby>? Hobbies { get; set; } = new List<Hobby>();
 		public ICollection<Achievement>? Achievements { get; set; } = new List<Achievement>();
 
 		public Profile() { }
-		public Profile(Guid id, string name, string description, int age, string town, BigInteger balance)
+		public Profile(Guid id, string name, string description, int age, string town, BigInteger balance, bool gender)
 		{
 			Id = id;
 			Name = name;
 			Description = description;
 			Age = age;
 			Town = town;
+			Gender = gender;
 			Balance = balance;
 		}
 	}

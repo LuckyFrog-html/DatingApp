@@ -7,25 +7,25 @@ using System.Threading;
 
 namespace DatingApp.Api.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class ProfileController : ControllerBase
-    {
+	[ApiController]
+	[Route("api/v1/[controller]")]
+	public class ProfileController : ControllerBase
+	{
 
-        private readonly ILogger<ProfileController> _logger;
-        private readonly IProfileService _profileService;
+		private readonly ILogger<ProfileController> _logger;
+		private readonly IProfileService _profileService;
 
-        public ProfileController(ILogger<ProfileController> logger,
-            IProfileService profileService)
-        {
-            _logger = logger;
-            _profileService = profileService;
-        }
+		public ProfileController(ILogger<ProfileController> logger,
+			IProfileService profileService)
+		{
+			_logger = logger;
+			_profileService = profileService;
+		}
 
-        [Authorize(Policy = "user")]
+		[Authorize(Policy = "user")]
 		[HttpGet]
-        public async Task<ActionResult<Profile>> GetProfile(CancellationToken cancellationToken)
-        {
+		public async Task<ActionResult<Profile>> GetProfile(CancellationToken cancellationToken)
+		{
 			Guid userId;
 			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
 
@@ -53,21 +53,21 @@ namespace DatingApp.Api.Controllers
 		[Authorize(Policy = "user")]
 		[HttpGet("achievements")]
 		public async Task<ActionResult<ICollection<Achievement>>> GetAchievemnts
-            (CancellationToken cancellationToken)
+			(CancellationToken cancellationToken)
 		{
-            Guid userId;
+			Guid userId;
 			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
 
-            if (!flag)
-            {
-                return Unauthorized();
-            }
-            var result = await _profileService.GetAchievements(userId, cancellationToken);
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.GetAchievements(userId, cancellationToken);
 
-            if (result.IsError)
-            {
-                return BadRequest();
-            }
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
 
 			return Ok(result.Value);
 		}
@@ -84,7 +84,7 @@ namespace DatingApp.Api.Controllers
 			{
 				return Unauthorized();
 			}
-			var result = await _profileService.GetHobbies(userId, cancellationToken);
+			var result = await _profileService.GetHobbiesAsync(userId, cancellationToken);
 
 			if (result.IsError)
 			{
@@ -106,7 +106,7 @@ namespace DatingApp.Api.Controllers
 			{
 				return Unauthorized();
 			}
-			var result = await _profileService.AddHobby(userId, addedHobbies, cancellationToken);
+			var result = await _profileService.AddHobbyAsync(userId, addedHobbies, cancellationToken);
 
 			if (result.IsError)
 			{
@@ -121,10 +121,24 @@ namespace DatingApp.Api.Controllers
 
 		[Authorize(Policy = "user")]
 		[HttpDelete]
-        public int DeleteProfile()
+        public async Task<ActionResult> DeleteProfile(CancellationToken cancellationToken)
         {
-            return -1;
-        }
+			Guid userId;
+			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.MarkAsDeletedAsync(userId, cancellationToken);
+
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok(result.Value);
+		}
 
 
 	}
