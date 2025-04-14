@@ -35,7 +35,7 @@ namespace DatingApp.Api
 			builder.WebHost.ConfigureKestrel(options => {
 				options.ListenLocalhost(5000); // HTTP
 				options.ListenLocalhost(5001, listenOptions => {
-					listenOptions.UseHttps(); // HTTPS с самоподписанным сертификатом
+					listenOptions.UseHttps(); // HTTPS пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				});
 			});
 
@@ -45,11 +45,11 @@ namespace DatingApp.Api
 			var app = builder.Build();
 			app.UseHttpsRedirection();
 			// Configure the HTTP request pipeline.
-			if (app.Environment.IsDevelopment())
-            {
+			// if (app.Environment.IsDevelopment())
+            // {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            // }
 
             app.UseAuthorization();
 

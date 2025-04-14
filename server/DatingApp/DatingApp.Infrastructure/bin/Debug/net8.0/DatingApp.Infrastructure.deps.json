@@ -728,7 +728,7 @@
         },
         "runtime": {
           "DatingApp.Application.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -739,7 +739,7 @@
         },
         "runtime": {
           "DatingApp.Domain.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

@@ -21,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${raleway.variable} antialiased flex flex-col items-center`}>
+                className={`${raleway.variable} antialiased overflow-hidden flex flex-col items-center`}>
                 <div className="w-full flex py-[10px] justify-center bg-(image:--bg-gradient)">
                     <div className="w-7xl">
                         <Header />

@@ -36,7 +36,7 @@ export const Header = () => {
                     <Link
                         key={page.href}
                         className={twMerge(
-                            'transition-all',
+                            'transition-all link',
                             pathname === page.href && "tracking-wider font-bold active",
                         )}
                         href={page.href}>

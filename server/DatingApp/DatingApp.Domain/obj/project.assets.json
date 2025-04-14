@@ -42,32 +42,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\relog\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/anasteziolog/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
+      "projectUniqueName": "/Users/anasteziolog/Documents/study/loveseek/server/DatingApp/DatingApp.Domain/DatingApp.Domain.csproj",
       "projectName": "DatingApp.Domain",
-      "projectPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
-      "packagesPath": "C:\\Users\\relog\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\obj\\",
+      "projectPath": "/Users/anasteziolog/Documents/study/loveseek/server/DatingApp/DatingApp.Domain/DatingApp.Domain.csproj",
+      "packagesPath": "/Users/anasteziolog/.nuget/packages/",
+      "outputPath": "/Users/anasteziolog/Documents/study/loveseek/server/DatingApp/DatingApp.Domain/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\relog\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/anasteziolog/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -85,8 +77,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.200"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -113,7 +104,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

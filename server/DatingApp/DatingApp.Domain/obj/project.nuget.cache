@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jVomud3Gp6M=",
+  "dgSpecHash": "MuBrsbr0AvI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\relog\\OneDrive\\Рабочий стол\\kprpo\\DatingApp\\server\\DatingApp\\DatingApp.Domain\\DatingApp.Domain.csproj",
+  "projectFilePath": "/Users/anasteziolog/Documents/study/loveseek/server/DatingApp/DatingApp.Domain/DatingApp.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\relog\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512"
+    "/Users/anasteziolog/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512"
   ],
   "logs": []
 }
