@@ -35,6 +35,7 @@ namespace DatingApp.Api.Controllers
 				var error = result.Errors.First();
 				return error.Type switch
 				{
+                    ErrorType.Conflict => Conflict(error.Description),
 					ErrorType.Validation => BadRequest(error.Description),
 					ErrorType.NotFound => NotFound(error.Description),
 					_ => StatusCode(500, "Internal server error")

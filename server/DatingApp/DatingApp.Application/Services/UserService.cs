@@ -58,9 +58,9 @@ namespace DatingApp.Application.Services
 			user.Profile = profile;
 
 			var roleResult = await _roleRepository.GetByNameAsync("user", cancellationToken);
-			if (roleResult.IsError)
+			if (!roleResult.IsError)
 			{
-				return roleResult.Errors;
+				return Error.Conflict("User already exists");
 			}
 
 			user.Roles.Add(roleResult.Value);

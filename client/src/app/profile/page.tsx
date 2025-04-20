@@ -33,7 +33,7 @@ const Profile = () => {
     };
 
     const login = async () => {
-        const res = await fetch("http://localhost:5001/api/v1/login", {
+        const res = await fetch("https://localhost:5001/api/v1/Auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -102,7 +102,10 @@ const Profile = () => {
                             type="password"
                             placeholder="Введите пароль"
                         />
-                        <button className="cursor-pointer">Зарегаться</button>
+                        <button
+                            onClick={auth}   
+                            className="cursor-pointer">
+                            Зарегаться</button>
                     </>
                 ) : (
                     <>
@@ -122,7 +125,10 @@ const Profile = () => {
                             type="password"
                             placeholder="Введите пароль"
                         />
-                        <button className="cursor-pointer">Войти</button>
+                        <button
+                            onClick={login} 
+                            className="cursor-pointer">
+                            Войти</button>
                     </>
                 )}
 
