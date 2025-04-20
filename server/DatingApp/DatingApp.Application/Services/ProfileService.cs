@@ -1,5 +1,6 @@
 ﻿using DatingApp.Application.Core.Interfaces;
 using DatingApp.Application.Interfaces;
+using DatingApp.Application.Models.Requests;
 using DatingApp.Application.Models.Responses;
 using DatingApp.Domain.Entities;
 using DatingApp.Domain.Interfaces.Repositories;
@@ -110,6 +111,28 @@ namespace DatingApp.Application.Services
 			var profile = profileResult.Value;
 			profile.IsDeleted = true;
 			return await _profileRepository.UpdateAsync(profile, cancellationToken); ;
+		}
+
+		public async Task<ErrorOr<Success>> EditProfile(Guid userId,
+			ProfilePatchRequest updatedProfileInfo,
+			CancellationToken cancellationToken)
+		{
+			var result = await GetProfileByIdAsync(userId, cancellationToken);
+
+			if (result.IsError)
+			{
+				return result.Errors;
+			}
+
+			Profile userProfile = result.Value;
+			userProfile.Name = updatedProfileInfo.Name;
+			userProfile.Description = updatedProfileInfo.Description;
+			userProfile.Age = updatedProfileInfo.Age;
+			userProfile.Town = updatedProfileInfo.Town;
+
+
+
+			return await _profileRepository.UpdateAsync(userProfile, cancellationToken);
 		}
 	}
 }

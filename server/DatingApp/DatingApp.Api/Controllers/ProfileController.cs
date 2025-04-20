@@ -1,4 +1,5 @@
 using DatingApp.Application.Interfaces;
+using DatingApp.Application.Models.Requests;
 using DatingApp.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -116,6 +117,28 @@ namespace DatingApp.Api.Controllers
 			return Ok(result.Value);
 		}
 
+		[Authorize(Policy = "user")]
+		[HttpPatch("editProfile")]
+		public async Task<ActionResult> EditProfile
+			(ProfilePatchRequest updatedProfileInfo, CancellationToken cancellationToken)
+		{
+			Guid userId;
+			var flag = Guid.TryParse(User.FindFirst("UserId")!.ToString(), out userId);
+
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+
+			var result = await _profileService.EditProfile(userId, updatedProfileInfo, cancellationToken);
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok();
+		}
+
 
 
 
@@ -130,6 +153,7 @@ namespace DatingApp.Api.Controllers
 			{
 				return Unauthorized();
 			}
+
 			var result = await _profileService.MarkAsDeletedAsync(userId, cancellationToken);
 
 			if (result.IsError)
