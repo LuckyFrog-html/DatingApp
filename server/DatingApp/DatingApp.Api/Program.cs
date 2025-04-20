@@ -49,8 +49,10 @@ namespace DatingApp.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+			app.UseCors("AllowAllOrigins");
+			app.UseAuthentication();
 
-            app.UseAuthorization();
+			app.UseAuthorization();
 
             
             app.MapControllers();
