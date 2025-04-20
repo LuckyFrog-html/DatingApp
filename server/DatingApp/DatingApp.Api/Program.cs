@@ -15,18 +15,17 @@ namespace DatingApp.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+			builder.Services.AllowAllOrigins();
 			// Add services to the container.
 			string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 			builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connection));
-            
-            
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddApiAuthenticationAndAuthorization(builder.Configuration);
+            
             builder.Services.AddRepos();
             builder.Services.AddDatingApp();
             builder.Services.AddSecurity();
