@@ -21,8 +21,7 @@ namespace DatingApp.Infrastructure.Config
 
 			builder.HasOne(p => p.User)
 				.WithOne(u => u.Profile)
-				.HasForeignKey<User>(p => p.Id)
-				.IsRequired()
+				.HasForeignKey<Profile>(p => p.Id)
 				.OnDelete(DeleteBehavior.Cascade);
 		}
 	}

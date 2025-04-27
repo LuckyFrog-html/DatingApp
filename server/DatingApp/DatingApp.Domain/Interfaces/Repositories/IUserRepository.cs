@@ -10,6 +10,7 @@ namespace DatingApp.Domain.Interfaces.Repositories
 {
 	public interface IUserRepository : IRepository<User>
 	{
-		Task<ErrorOr<User>> GetByNameAsync(string name, CancellationToken cancellationToken);
+		Task<ErrorOr<User>> GetByEmailAsync(string email, CancellationToken cancellationToken);
+
 	}
 }

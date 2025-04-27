@@ -118,6 +118,34 @@ namespace DatingApp.Api.Controllers
 		}
 
 		[Authorize(Policy = "user")]
+		[HttpPost("createprofile")]
+		public async Task<ActionResult> CreateProfile(string email, RegisterProfileRequest profileReq,
+			CancellationToken cancellationToken) 
+		{
+			Guid userId;
+			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.CreateProfile(
+				userId,
+				profileReq.Name,
+				profileReq.Age,
+				profileReq.Town,
+				profileReq.Gender,
+				cancellationToken);
+
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok(result.Value);
+		}
+
+		[Authorize(Policy = "user")]
 		[HttpPatch("editProfile")]
 		public async Task<ActionResult> EditProfile
 			(ProfilePatchRequest updatedProfileInfo, CancellationToken cancellationToken)
