@@ -5,6 +5,7 @@ using DatingApp.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -28,9 +29,10 @@ namespace DatingApp.Api
             
             builder.Services.AddRepos();
             builder.Services.AddDatingApp();
-            builder.Services.AddSecurity();
-
-
+			builder.Services.AddEmailService();
+			builder.Services.AddMemoryCache();
+			builder.Services.AddSecurity();
+            
 			builder.WebHost.ConfigureKestrel(options => {
 				options.ListenLocalhost(5000); // HTTP
 				options.ListenLocalhost(5001, listenOptions => {

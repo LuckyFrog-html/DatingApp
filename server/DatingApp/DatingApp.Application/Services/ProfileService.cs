@@ -28,6 +28,27 @@ namespace DatingApp.Application.Services
 			throw new NotImplementedException();
 		}
 
+		public async Task<ErrorOr<Success>> CreateProfile(Guid userId, string name, int age,
+			string town, bool gender, CancellationToken cancellationToken)
+		{
+			var ErrorOrProfile = await GetProfileByIdAsync(userId, cancellationToken);
+			if (!ErrorOrProfile.IsError)
+			{
+				return Error.Conflict("Profile already exists");
+			}
+
+			var newProfile = new Profile
+			{
+				Id = userId,
+				Name = name,
+				Age = age,
+				Town = town,
+				Gender = gender,
+			};
+			
+			return await _profileRepository.AddAsync(newProfile, cancellationToken);
+		}
+
 		public async Task<ErrorOr<Success>> AddHobbyAsync(
 			Guid userId, ICollection<string> addedHobbies, CancellationToken cancellationToken)
 		{

@@ -33,5 +33,7 @@ namespace DatingApp.Application.Interfaces
 			ProfilePatchRequest updatedProfileInfo,
 			CancellationToken cancellationToken);
 
+		public Task<ErrorOr<Success>> CreateProfile(Guid userId, string name, int age,
+			string town, bool gender, CancellationToken cancellationToken);
 	}
 }

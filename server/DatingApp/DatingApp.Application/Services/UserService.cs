@@ -34,33 +34,21 @@ namespace DatingApp.Application.Services
 
 
 
-		public async Task<ErrorOr<Success>> CreateUserAsync(RegisterRequest registerRequest, 
+		public async Task<ErrorOr<Success>> CreateUserAsync(string email, string password, 
 			CancellationToken cancellationToken)
 		{
 			User user = new User
 			{
 				Id = Guid.NewGuid(),
-				Name = registerRequest.Username,
-				Email = registerRequest.Email,
-				Password = registerRequest.Password,
+				Email = email,
+				Password = password,
 				CreatedAt = DateTime.UtcNow,
-
 			};
-			Profile profile = new Profile
-			{
-				Id = user.Id,
-				Name = registerRequest.Name,
-				Age = registerRequest.Age,
-				Town = registerRequest.Town,
-				Gender = registerRequest.Gender,
-			};
-
-			user.Profile = profile;
 
 			var roleResult = await _roleRepository.GetByNameAsync("user", cancellationToken);
-			if (!roleResult.IsError)
+			if (roleResult.IsError)
 			{
-				return Error.Conflict("User already exists");
+				return Error.Failure("GetRoleFailure");
 			}
 
 			user.Roles.Add(roleResult.Value);
@@ -69,7 +57,6 @@ namespace DatingApp.Application.Services
 			{
 				await _unitOfWork.BeginTransactionAsync(cancellationToken);
 				await _userRepository.AddAsync(user, cancellationToken);
-				await _profileRepository.AddAsync(profile, cancellationToken);
 				await _unitOfWork.SaveChangesAsync(cancellationToken);
 				await _unitOfWork.CommitAsync(cancellationToken);
 
@@ -80,6 +67,23 @@ namespace DatingApp.Application.Services
 				await _unitOfWork.RollbackAsync(cancellationToken);
 				return Error.Failure("CreateUserFailure", description: ex.Message);
 			}
+		}
+
+		public async Task<ErrorOr<bool>> IsUserExists(string email, CancellationToken cancellationToken)
+		{
+			var errorOrUser = await _userRepository.GetByEmailAsync("email", cancellationToken);
+			if (errorOrUser.IsError)
+			{
+				if (errorOrUser.Errors.First().Type is ErrorType.NotFound) {
+					return false;
+				}
+				return errorOrUser.Errors;
+			}
+			if (errorOrUser.Value is User)
+			{
+				return true;
+			}
+			return false;
 		}
 
 	}

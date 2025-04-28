@@ -29,11 +29,11 @@ namespace DatingApp.Application.Services
 			_jwtProvider = jwtProvider;
 		}
 
-		public async Task<ErrorOr<LoginResponse>> LoginAsync(string username,
+		public async Task<ErrorOr<LoginResponse>> LoginAsync(string email,
 			string password, 
 			CancellationToken cancellationToken)
 		{
-			var userResult = await _userRepository.GetByNameAsync(username, cancellationToken);
+			var userResult = await _userRepository.GetByEmailAsync(email, cancellationToken);
 			if (userResult.IsError)
 			{
 				return userResult.Errors;

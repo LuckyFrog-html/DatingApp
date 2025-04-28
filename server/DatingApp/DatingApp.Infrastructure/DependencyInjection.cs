@@ -1,5 +1,6 @@
 ﻿using DatingApp.Application.Core.Interfaces;
 using DatingApp.Domain.Interfaces.Repositories;
+using DatingApp.Infrastructure.Email;
 using DatingApp.Infrastructure.Persistence;
 using DatingApp.Infrastructure.Repositories;
 using DatingApp.Infrastructure.Security;
@@ -19,6 +20,12 @@ namespace DatingApp.Infrastructure
 			//services.AddTransient<IPasswordHasher, PasswordHasher>();
 			services.AddTransient<IJWTProvider, JWTProvider>();
 
+			return services;
+		}
+
+		public static IServiceCollection AddEmailService(this IServiceCollection services)
+		{
+			services.AddTransient<IEmailService, EmailService>();
 			return services;
 		}
 

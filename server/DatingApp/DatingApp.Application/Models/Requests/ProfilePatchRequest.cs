@@ -12,5 +12,6 @@ namespace DatingApp.Application.Models.Requests
 		public string Description { get; set; }
 		public int Age { get; set; }
 		public string Town { get; set; }
+		public bool Gender { get; set; }
 	}
 }
