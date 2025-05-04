@@ -34,8 +34,8 @@ namespace DatingApp.Api
 			builder.Services.AddSecurity();
             
 			builder.WebHost.ConfigureKestrel(options => {
-				options.ListenLocalhost(5000); // HTTP
-				options.ListenLocalhost(5001, listenOptions => {
+				options.ListenAnyIP(5000); // HTTP
+				options.ListenAnyIP(5001, listenOptions => {
 					listenOptions.UseHttps(); // HTTPS с самоподписанным сертификатом
 				});
 			});
