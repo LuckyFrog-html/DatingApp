@@ -48,90 +48,47 @@ const Profile = () => {
         }
     };
 
+    const [isEntered, setIsEntered] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const TEMP_func = () => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            setIsEntered(true);
+        }, 500);
+    };
+
+    if (isEntered) {
+        return <div className="text-2xl mt-3 text-center">Вы вошли)</div>;
+    }
+
     return (
         <div className="pt-5 flex flex-col w-full items-center gap-2">
             <p className="text-2xl font-bold">Ваш профиль</p>
             <div className="flex flex-col gap-3">
-                {currState === "auth" ? (
-                    <>
-                        <input
-                            value={user.name}
-                            onChange={(e) =>
-                                setUser({ ...user, name: e.target.value })
-                            }
-                            type="text"
-                            placeholder="Введите имя"
-                        />
-                        <input
-                            value={user.age}
-                            onChange={(e) =>
-                                setUser({ ...user, age: e.target.value })
-                            }
-                            type="number"
-                            placeholder="Введите возраст"
-                        />
-                        <input
-                            value={user.town}
-                            onChange={(e) =>
-                                setUser({ ...user, town: e.target.value })
-                            }
-                            type="text"
-                            placeholder="Введите город"
-                        />
-                        <input
-                            value={user.username}
-                            onChange={(e) =>
-                                setUser({ ...user, username: e.target.value })
-                            }
-                            type="text"
-                            placeholder="Введите логин"
-                        />
-                        <input
-                            value={user.email}
-                            onChange={(e) =>
-                                setUser({ ...user, email: e.target.value })
-                            }
-                            type="text"
-                            placeholder="Введите email"
-                        />
-                        <input
-                            value={user.password}
-                            onChange={(e) =>
-                                setUser({ ...user, password: e.target.value })
-                            }
-                            type="password"
-                            placeholder="Введите пароль"
-                        />
-                        <button
-                            onClick={auth}   
-                            className="cursor-pointer">
-                            Зарегаться</button>
-                    </>
-                ) : (
-                    <>
-                        <input
-                            value={user.username}
-                            onChange={(e) =>
-                                setUser({ ...user, username: e.target.value })
-                            }
-                            type="text"
-                            placeholder="Введите логин"
-                        />
-                        <input
-                            value={user.password}
-                            onChange={(e) =>
-                                setUser({ ...user, password: e.target.value })
-                            }
-                            type="password"
-                            placeholder="Введите пароль"
-                        />
-                        <button
-                            onClick={login} 
-                            className="cursor-pointer">
-                            Войти</button>
-                    </>
-                )}
-
+                <input
+                    value={user.username}
+                    onChange={(e) =>
+                        setUser({ ...user, username: e.target.value })
+                    }
+                    type="text"
+                    placeholder="Введите почту"
+                />
+                <input
+                    value={user.password}
+                    onChange={(e) =>
+                        setUser({ ...user, password: e.target.value })
+                    }
+                    type="password"
+                    placeholder="Введите пароль"
+                />
+                <button
+                    disabled={isLoading}
+                    onClick={() => TEMP_func()}
+                    className="cursor-pointer">
+                    {currState === "auth" ? "Войти" : "Зарегаться"}
+                </button>
                 {currState === "auth" ? (
                     <button
                         onClick={() => setCurrState("login")}

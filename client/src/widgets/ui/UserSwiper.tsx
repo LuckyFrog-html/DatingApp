@@ -281,8 +281,23 @@ export const UserSwiper = ({
                         width: `${CARD_WIDTH}px`,
                         height: `${CARD_HEIGHT}px`,
                     }}
-                    className={`rounded-2xl bg-blue-500`}
-                />
+                    className={`rounded-2xl bg-blue-200`}
+                >
+                    <div className="p-3 h-full flex flex-col">
+                        <img
+                        className="h-[70%]"
+                        src="https://png.pngtree.com/thumb_back/fw800/background/20230610/pngtree-picture-of-a-blue-bird-on-a-black-background-image_2937385.jpg" alt="ptic" />
+                        <p className="text-black text-xl mt-3">
+                            Главный птиц
+                        </p>
+                        <p className="text-black text-base">
+                            Любит птичек и не любит свиней. Агрессивен
+                        </p>
+                        <p className="mt-auto">
+                            {'ЗЗ: Овен <3'}
+                        </p>
+                    </div>
+                </div>
             </div>
             {/* <div
                 style={{
