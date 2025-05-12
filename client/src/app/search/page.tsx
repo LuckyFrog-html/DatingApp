@@ -41,11 +41,20 @@ const Search = () => {
         setClickKludge((prev) => prev + 1);
 
         setRatio(-1);
+
+        setTimeout(() => {
+            setRatio(0);
+        }, 750);
     };
 
     const onLikeClick = () => {
         setClickKludge((prev) => prev + 1);
+
         setRatio(1);
+
+        setTimeout(() => {
+            setRatio(0);
+        }, 750);
     };
 
     return (
