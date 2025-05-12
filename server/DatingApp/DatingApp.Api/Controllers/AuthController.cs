@@ -19,18 +19,21 @@ namespace DatingApp.Api.Controllers
         private readonly IAuthService _authService;
 		private readonly IMemoryCache _cache;
 		private readonly IEmailService _emailService;
+		private readonly IProfileService _profileService;
 
 		public AuthController(ILogger<AuthController> logger, 
             IUserService userService, 
             IAuthService authService,
             IMemoryCache memoryCache,
-			IEmailService emailService)
+			IEmailService emailService,
+			IProfileService profileService)
         {
             _logger = logger;
             _userService = userService;
             _authService = authService;
             _cache = memoryCache;
 			_emailService = emailService;
+			_profileService = profileService;
         }
 
 		
@@ -101,6 +104,16 @@ namespace DatingApp.Api.Controllers
 					_ => StatusCode(500, "Internal server error")
 				};
 			}
+
+			var user = (await _userService.GetUserByEmailAsync(loginRequest.Email, cancellationToken)).Value;
+
+			var profile = await _profileService.GetProfileByIdAsync(user.Id, cancellationToken);
+
+			if (profile.IsError)
+			{
+				return StatusCode(406);
+			}
+
             LoginResponse loginResponse = result.Value;
             SetJwtCookie(HttpContext, loginResponse.AccessToken, loginResponse.RefreshToken);
 
@@ -146,6 +159,7 @@ namespace DatingApp.Api.Controllers
 					_ => StatusCode(500, "Internal server error")
 				};
 			}
+
 
 			return Ok();
 

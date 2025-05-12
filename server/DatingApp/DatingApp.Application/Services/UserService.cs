@@ -69,6 +69,26 @@ namespace DatingApp.Application.Services
 			}
 		}
 
+		public async Task<ErrorOr<List<User>>> GetAllUsersAsync(CancellationToken cancellationToken)
+		{
+			var errorOrUsers = await _userRepository.GetAllAsync(cancellationToken);
+			if (errorOrUsers.IsError)
+			{
+				return errorOrUsers.Errors;
+			}
+			return errorOrUsers.Value;
+		}
+
+		public async Task<ErrorOr<User>> GetUserByEmailAsync(string email, CancellationToken cancellationToken)
+		{
+			var errorOrUser = await _userRepository.GetByEmailAsync(email, cancellationToken);
+			if (errorOrUser.IsError)
+			{
+				return errorOrUser.Errors;
+			}
+			return errorOrUser.Value;
+		}
+
 		public async Task<ErrorOr<bool>> IsUserExists(string email, CancellationToken cancellationToken)
 		{
 			var errorOrUser = await _userRepository.GetByEmailAsync("email", cancellationToken);
