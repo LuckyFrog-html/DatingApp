@@ -16,5 +16,9 @@ namespace DatingApp.Application.Interfaces
 			CancellationToken cancellationToken);
 
 		Task<ErrorOr<bool>> IsUserExists(string email, CancellationToken cancellationToken);
+
+		Task<ErrorOr<List<User>>> GetAllUsersAsync(CancellationToken cancellationToken);
+
+		Task<ErrorOr<User>> GetUserByEmailAsync(string email, CancellationToken cancellationToken);
 	}
 }

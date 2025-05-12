@@ -1,5 +1,6 @@
 using DatingApp.Application.Interfaces;
 using DatingApp.Application.Models.Requests;
+using DatingApp.Application.Services;
 using DatingApp.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +16,15 @@ namespace DatingApp.Api.Controllers
 
 		private readonly ILogger<ProfileController> _logger;
 		private readonly IProfileService _profileService;
+		private readonly IUserService _userService;
 
 		public ProfileController(ILogger<ProfileController> logger,
-			IProfileService profileService)
+			IProfileService profileService,
+			IUserService userService)
 		{
 			_logger = logger;
 			_profileService = profileService;
+			_userService = userService;
 		}
 
 		[Authorize(Policy = "user")]
@@ -51,19 +55,19 @@ namespace DatingApp.Api.Controllers
 			return 1;
 		}
 
-		[Authorize(Policy = "user")]
+		//[Authorize(Policy = "user")]
 		[HttpGet("achievements")]
 		public async Task<ActionResult<ICollection<Achievement>>> GetAchievemnts
-			(CancellationToken cancellationToken)
+			(Guid test, CancellationToken cancellationToken)
 		{
-			Guid userId;
-			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			//Guid userId;
+			//var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
 
-			if (!flag)
-			{
-				return Unauthorized();
-			}
-			var result = await _profileService.GetAchievements(userId, cancellationToken);
+			//if (!flag)
+			//{
+			//	return Unauthorized();
+			//}
+			var result = await _profileService.GetAchievements(test, cancellationToken);
 
 			if (result.IsError)
 			{
@@ -117,18 +121,20 @@ namespace DatingApp.Api.Controllers
 			return Ok(result.Value);
 		}
 
-		[Authorize(Policy = "user")]
+		//[Authorize(Policy = "user")]
 		[HttpPost("createprofile")]
 		public async Task<ActionResult> CreateProfile(string email, RegisterProfileRequest profileReq,
 			CancellationToken cancellationToken) 
 		{
-			Guid userId;
-			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			//Guid userId;
+			//var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId").ToString(), out userId);
 
-			if (!flag)
-			{
-				return Unauthorized();
-			}
+			//if (!flag)
+			//{
+			//	return Unauthorized();
+			//}
+			var test = (await _userService.GetUserByEmailAsync(email, cancellationToken)).Value;
+			Guid userId = test.Id;
 			var result = await _profileService.CreateProfile(
 				userId,
 				profileReq.Name,

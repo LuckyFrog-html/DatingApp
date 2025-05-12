@@ -16,7 +16,8 @@ namespace DatingApp.Application.Extensions
 			services.AddScoped<IProfileService, ProfileService>();
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IAuthService, AuthService>();
-			
+			services.AddScoped<IAchievementIssuingService, AchievementIssuingService>();
+			services.AddHostedService<AchievementBackgroundService>();
 		}
 	}
 }

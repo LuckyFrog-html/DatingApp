@@ -23,6 +23,12 @@ namespace DatingApp.Infrastructure.Config
 				.WithOne(u => u.Profile)
 				.HasForeignKey<Profile>(p => p.Id)
 				.OnDelete(DeleteBehavior.Cascade);
+
+			builder.HasMany(p => p.Achievements)
+				.WithMany();
+
+			builder.HasMany(p => p.Hobbies)
+				.WithMany();
 		}
 	}
 }

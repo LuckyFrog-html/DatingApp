@@ -15,17 +15,39 @@ namespace DatingApp.Application.Services
 {
 	public class ProfileService : IProfileService
 	{
+		private readonly IAchievementRepository _achievementRepository;
 		private readonly IProfileRepository _profileRepository;
 		private readonly IHobbyRepository _hobbyRepository;
 		public ProfileService(IProfileRepository profileRepository,
-			IHobbyRepository hobbyRepository) 
+			IHobbyRepository hobbyRepository,
+			IAchievementRepository achievementRepository) 
 		{
 			_profileRepository = profileRepository;
 			_hobbyRepository = hobbyRepository;
+			_achievementRepository = achievementRepository;
 		}
 		public async Task<ErrorOr<Success>> AddAchievement(Guid userId, Achievement achievement, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			var profileResult = await _profileRepository.GetByIdAsync(userId, cancellationToken);
+			if (profileResult.IsError)
+			{
+				return profileResult.Errors;
+			}
+			var profile = profileResult.Value;
+
+			if (!profile.Achievements.Contains(achievement))
+			{
+				profile.Achievements.Add(achievement);
+			}
+
+			var result = await _profileRepository.UpdateAsync(profile, cancellationToken);
+
+			if (result.IsError)
+			{
+				return result.Errors;
+			}
+
+			return result.Value;
 		}
 
 		public async Task<ErrorOr<Success>> CreateProfile(Guid userId, string name, int age,
@@ -45,8 +67,20 @@ namespace DatingApp.Application.Services
 				Town = town,
 				Gender = gender,
 			};
-			
-			return await _profileRepository.AddAsync(newProfile, cancellationToken);
+
+			await _profileRepository.AddAsync(newProfile, cancellationToken);
+
+			var allAchievements = await _achievementRepository.GetAllAsync(cancellationToken);
+			if (allAchievements.IsError)
+			{
+				return allAchievements.Errors;
+			}
+
+			Achievement days0 = allAchievements.Value.Find(achievement => achievement.Name == "0days");
+
+			await AddAchievement(userId, days0, cancellationToken);
+
+			return Result.Success;  
 		}
 
 		public async Task<ErrorOr<Success>> AddHobbyAsync(
