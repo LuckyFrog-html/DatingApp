@@ -23,6 +23,7 @@ namespace DatingApp.Infrastructure.Repositories
 			try
 			{
 				await _dbContext.AddAsync(entity, cancellationToken);
+				await _dbContext.SaveChangesAsync(cancellationToken);
 				return new Success();
 			}
 			catch (Exception ex)

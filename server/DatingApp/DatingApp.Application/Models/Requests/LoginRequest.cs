@@ -11,7 +11,7 @@ namespace DatingApp.Application.Models.Requests
 	{
 		[Required]
 		[MaxLength(50)]
-		public string Username { get; set; }
+		public string Email { get; set; }
 
 		[Required]
 		[MaxLength(50)]

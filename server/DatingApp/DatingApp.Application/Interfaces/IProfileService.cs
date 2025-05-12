@@ -1,4 +1,5 @@
-﻿using DatingApp.Domain.Entities;
+﻿using DatingApp.Application.Models.Requests;
+using DatingApp.Domain.Entities;
 using DatingApp.Domain.Interfaces.Repositories;
 using ErrorOr;
 using System;
@@ -28,5 +29,11 @@ namespace DatingApp.Application.Interfaces
 		public Task<ErrorOr<Success>> MarkAsDeletedAsync(Guid userId,
 			CancellationToken cancellationToken);
 
+		public Task<ErrorOr<Success>> EditProfile(Guid userId,
+			ProfilePatchRequest updatedProfileInfo,
+			CancellationToken cancellationToken);
+
+		public Task<ErrorOr<Success>> CreateProfile(Guid userId, string name, int age,
+			string town, bool gender, CancellationToken cancellationToken);
 	}
 }

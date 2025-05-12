@@ -1,8 +1,10 @@
+using DatingApp.Application.Core.Interfaces;
 using DatingApp.Application.Interfaces;
 using DatingApp.Application.Models.Requests;
 using DatingApp.Application.Models.Responses;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Linq;
 
 namespace DatingApp.Api.Controllers
@@ -15,34 +17,69 @@ namespace DatingApp.Api.Controllers
         private readonly ILogger<AuthController> _logger;
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
+		private readonly IMemoryCache _cache;
+		private readonly IEmailService _emailService;
+		private readonly IProfileService _profileService;
 
-        public AuthController(ILogger<AuthController> logger, 
+		public AuthController(ILogger<AuthController> logger, 
             IUserService userService, 
-            IAuthService authService)
+            IAuthService authService,
+            IMemoryCache memoryCache,
+			IEmailService emailService,
+			IProfileService profileService)
         {
             _logger = logger;
             _userService = userService;
             _authService = authService;
+            _cache = memoryCache;
+			_emailService = emailService;
+			_profileService = profileService;
         }
 
-        [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterRequest registerRequest, 
-            CancellationToken cancellationToken)
-        {
-            var result = await _userService.CreateUserAsync(registerRequest, cancellationToken);
-            if (result.IsError)
-            {
-				var error = result.Errors.First();
-				return error.Type switch
-				{
-					ErrorType.Validation => BadRequest(error.Description),
-					ErrorType.NotFound => NotFound(error.Description),
-					_ => StatusCode(500, "Internal server error")
-				};
+		
+
+		[HttpPost("register")]
+		public async Task<ActionResult> Register(RegisterRequest registerRequest,
+			CancellationToken cancellationToken)
+		{
+			var errorOrResult = await _userService.IsUserExists(registerRequest.Email, cancellationToken);
+			if (errorOrResult.IsError)
+			{
+				return BadRequest("");
 			}
 
-            return Ok();
+			var result = errorOrResult.Value;
+			if (result == true)
+			{
+				return Conflict("User with this email already exists");
+			}
 
+			var code = new Random().Next(100000, 999999).ToString();
+
+			_cache.Set(registerRequest.Email,
+				(Password: registerRequest.Password, Code: code),
+				TimeSpan.FromMinutes(20));
+
+			await _emailService.SendEmailAsync(registerRequest.Email, "Код подтверждения",
+				$"Ваш код подтверждения: {code}");
+
+			return Ok();
+
+		}
+
+		[HttpPost("verifycode")]
+        public async Task<ActionResult> VerifyCode(string email, string code, CancellationToken cancellationToken)
+        {
+            if (!_cache.TryGetValue(email, out (string Password, string Code) cachedData))
+            {
+                return BadRequest("Код истек или не существует");
+            }
+            if (cachedData.Code != code)
+            {
+                return BadRequest("Неверный код");
+            }
+
+			return await CreateUser(email, cachedData.Password, cancellationToken);
         }
 
 		[HttpPost("login")]
@@ -50,7 +87,7 @@ namespace DatingApp.Api.Controllers
             LoginRequest loginRequest,
             CancellationToken cancellationToken)
 		{
-			var result = await _authService.LoginAsync(loginRequest.Username,
+			var result = await _authService.LoginAsync(loginRequest.Email,
                 loginRequest.Password,
                 cancellationToken);
 
@@ -67,6 +104,16 @@ namespace DatingApp.Api.Controllers
 					_ => StatusCode(500, "Internal server error")
 				};
 			}
+
+			var user = (await _userService.GetUserByEmailAsync(loginRequest.Email, cancellationToken)).Value;
+
+			var profile = await _profileService.GetProfileByIdAsync(user.Id, cancellationToken);
+
+			if (profile.IsError)
+			{
+				return StatusCode(406);
+			}
+
             LoginResponse loginResponse = result.Value;
             SetJwtCookie(HttpContext, loginResponse.AccessToken, loginResponse.RefreshToken);
 
@@ -93,5 +140,29 @@ namespace DatingApp.Api.Controllers
 				SameSite = SameSiteMode.Lax
 			});
 		}
-    }
+
+		private async Task<ActionResult> CreateUser(string email,
+			string password,
+			CancellationToken cancellationToken)
+		{
+			var result = await _userService.CreateUserAsync(email,
+				password,
+				cancellationToken);
+			if (result.IsError)
+			{
+				var error = result.Errors.First();
+				return error.Type switch
+				{
+					ErrorType.Conflict => Conflict(error.Description),
+					ErrorType.Validation => BadRequest(error.Description),
+					ErrorType.NotFound => NotFound(error.Description),
+					_ => StatusCode(500, "Internal server error")
+				};
+			}
+
+
+			return Ok();
+
+		}
+	}
 }

@@ -33,7 +33,7 @@ const Profile = () => {
     };
 
     const login = async () => {
-        const res = await fetch("http://localhost:5001/api/v1/login", {
+        const res = await fetch("https://localhost:5001/api/v1/Auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -89,7 +89,6 @@ const Profile = () => {
                     className="cursor-pointer">
                     {currState === "auth" ? "Войти" : "Зарегаться"}
                 </button>
-
                 {currState === "auth" ? (
                     <button
                         onClick={() => setCurrState("login")}

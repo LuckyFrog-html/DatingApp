@@ -16,6 +16,10 @@ namespace DatingApp.Infrastructure.Config
 			builder.ToTable("Users");
 			builder.HasKey(u => u.Id);
 
+			builder.HasOne(u => u.Profile)
+			   .WithOne(p => p.User)
+			   .HasForeignKey<Profile>(p => p.Id);
+
 			builder.HasMany(u => u.Roles)
 				.WithMany(r => r.Users)
 				.UsingEntity(j => j.ToTable("Users_Roles"));

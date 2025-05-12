@@ -15,7 +15,8 @@ namespace DatingApp.Application.Models.DTOs
 		public string Description { get; set; }
 		public int Age { get; set; }
 		public string Town { get; set; }
-		public IEnumerable<Achievement> Achievements { get; set; }
+		public ICollection<Achievement> Achievements { get; set; }
+		public ICollection<Hobby> Hobbies { get; set; }
 		public BigInteger Balance { get; set; }
 
 	}

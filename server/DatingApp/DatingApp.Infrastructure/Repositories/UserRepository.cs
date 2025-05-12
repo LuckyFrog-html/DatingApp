@@ -80,13 +80,13 @@ namespace DatingApp.Infrastructure.Repositories
 			}
 		}
 
-		public async Task<ErrorOr<User>> GetByNameAsync(string name, CancellationToken cancellationToken)
+		public async Task<ErrorOr<User>> GetByEmailAsync(string email, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var user = await _dbContext.Set<User>()
 					.Include(u => u.Roles)
-					.FirstOrDefaultAsync(t => t.Name == name, cancellationToken);
+					.FirstOrDefaultAsync(t => t.Email == email, cancellationToken);
 
 				return user is not null
 					? user
@@ -94,7 +94,7 @@ namespace DatingApp.Infrastructure.Repositories
 			}
 			catch (Exception ex)
 			{
-				return Error.Failure("GetAllFailed", $"Failed to get user. Error: {ex.Message}");
+				return Error.Failure("GetUserFailed", $"Failed to get user. Error: {ex.Message}");
 			}
 		}
 

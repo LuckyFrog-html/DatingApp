@@ -1,5 +1,6 @@
 ﻿using DatingApp.Application.Core.Interfaces;
 using DatingApp.Domain.Interfaces.Repositories;
+using DatingApp.Infrastructure.Email;
 using DatingApp.Infrastructure.Persistence;
 using DatingApp.Infrastructure.Repositories;
 using DatingApp.Infrastructure.Security;
@@ -22,6 +23,12 @@ namespace DatingApp.Infrastructure
 			return services;
 		}
 
+		public static IServiceCollection AddEmailService(this IServiceCollection services)
+		{
+			services.AddTransient<IEmailService, EmailService>();
+			return services;
+		}
+
 		public static IServiceCollection AddRepos(this IServiceCollection services)
 		{
 			services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
@@ -29,6 +36,7 @@ namespace DatingApp.Infrastructure
 			services.AddScoped<IHobbyRepository, HobbyRepository>();
 			services.AddScoped<IProfileRepository, ProfileRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
+			services.AddScoped<IAchievementRepository, AchievementRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			return services;
 		}

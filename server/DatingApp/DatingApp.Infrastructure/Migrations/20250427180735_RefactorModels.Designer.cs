@@ -4,6 +4,7 @@ using System.Numerics;
 using DatingApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatingApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250427180735_RefactorModels")]
+    partial class RefactorModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,21 +25,6 @@ namespace DatingApp.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("AchievementProfile", b =>
-                {
-                    b.Property<Guid>("AchievementsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProfileId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("AchievementsId", "ProfileId");
-
-                    b.HasIndex("ProfileId");
-
-                    b.ToTable("AchievementProfile");
-                });
 
             modelBuilder.Entity("DatingApp.Domain.Entities.Achievement", b =>
                 {
@@ -52,77 +40,14 @@ namespace DatingApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("ProfileId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Achievements", (string)null);
+                    b.HasIndex("ProfileId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("d395bac9-476c-4d1c-893c-59ac72f3bfc3"),
-                            Description = "Успешная регистрация в сервисе",
-                            Name = "0days"
-                        },
-                        new
-                        {
-                            Id = new Guid("1ddd25d2-3813-4301-b7a7-91ce30d79666"),
-                            Description = "Стаж 1 месяц",
-                            Name = "30days"
-                        },
-                        new
-                        {
-                            Id = new Guid("29692dab-526b-46ee-a76b-b0e1bfb11a85"),
-                            Description = "Стаж 1 год",
-                            Name = "365days"
-                        },
-                        new
-                        {
-                            Id = new Guid("5c613232-a6ca-4ee5-89b7-7d82c4a9fb3d"),
-                            Description = "Поставить первый лайк",
-                            Name = "1likesent"
-                        },
-                        new
-                        {
-                            Id = new Guid("dfe6a248-d9f3-4d24-ba92-e5bd51d636b8"),
-                            Description = "Поставить 100 лайков",
-                            Name = "100likesent"
-                        },
-                        new
-                        {
-                            Id = new Guid("8ea9c875-a26b-40da-99c3-9a7ae084ef0a"),
-                            Description = "Поставить первый дизлайк",
-                            Name = "1dislikesent"
-                        },
-                        new
-                        {
-                            Id = new Guid("13de6946-df16-45e0-b3ef-151fed66dd4c"),
-                            Description = "Поставить 100 дизлайков",
-                            Name = "100dislikesent"
-                        },
-                        new
-                        {
-                            Id = new Guid("65c7a89d-eb8a-495a-b165-837a696472c8"),
-                            Description = "Получить первый лайк",
-                            Name = "1likegot"
-                        },
-                        new
-                        {
-                            Id = new Guid("c0b8f363-47de-46a1-a0b5-b927f6e0f37a"),
-                            Description = "Получить 100 лайков",
-                            Name = "100likegot"
-                        },
-                        new
-                        {
-                            Id = new Guid("a8d62703-b2a3-4141-abbc-276c62829969"),
-                            Description = "Получить первый дизлайк",
-                            Name = "1dislikegot"
-                        },
-                        new
-                        {
-                            Id = new Guid("55d18c79-209c-45b9-892a-d83926ddbfca"),
-                            Description = "Получить 100 дизлайков",
-                            Name = "100dislikegot"
-                        });
+                    b.ToTable("Achievements", (string)null);
                 });
 
             modelBuilder.Entity("DatingApp.Domain.Entities.Action", b =>
@@ -162,7 +87,12 @@ namespace DatingApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("ProfileId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Hobbies", (string)null);
                 });
@@ -291,21 +221,6 @@ namespace DatingApp.Infrastructure.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("HobbyProfile", b =>
-                {
-                    b.Property<Guid>("HobbiesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProfileId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("HobbiesId", "ProfileId");
-
-                    b.HasIndex("ProfileId");
-
-                    b.ToTable("HobbyProfile");
-                });
-
             modelBuilder.Entity("RoleUser", b =>
                 {
                     b.Property<Guid>("RolesId")
@@ -321,19 +236,18 @@ namespace DatingApp.Infrastructure.Migrations
                     b.ToTable("Users_Roles", (string)null);
                 });
 
-            modelBuilder.Entity("AchievementProfile", b =>
+            modelBuilder.Entity("DatingApp.Domain.Entities.Achievement", b =>
                 {
-                    b.HasOne("DatingApp.Domain.Entities.Achievement", null)
-                        .WithMany()
-                        .HasForeignKey("AchievementsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DatingApp.Domain.Entities.Profile", null)
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Achievements")
+                        .HasForeignKey("ProfileId");
+                });
+
+            modelBuilder.Entity("DatingApp.Domain.Entities.Hobby", b =>
+                {
+                    b.HasOne("DatingApp.Domain.Entities.Profile", null)
+                        .WithMany("Hobbies")
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("DatingApp.Domain.Entities.Profile", b =>
@@ -358,21 +272,6 @@ namespace DatingApp.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HobbyProfile", b =>
-                {
-                    b.HasOne("DatingApp.Domain.Entities.Hobby", null)
-                        .WithMany()
-                        .HasForeignKey("HobbiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatingApp.Domain.Entities.Profile", null)
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("RoleUser", b =>
                 {
                     b.HasOne("DatingApp.Domain.Entities.Role", null)
@@ -386,6 +285,13 @@ namespace DatingApp.Infrastructure.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DatingApp.Domain.Entities.Profile", b =>
+                {
+                    b.Navigation("Achievements");
+
+                    b.Navigation("Hobbies");
                 });
 
             modelBuilder.Entity("DatingApp.Domain.Entities.User", b =>
