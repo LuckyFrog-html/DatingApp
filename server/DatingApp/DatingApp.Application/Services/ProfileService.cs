@@ -38,6 +38,7 @@ namespace DatingApp.Application.Services
 			if (!profile.Achievements.Contains(achievement))
 			{
 				profile.Achievements.Add(achievement);
+				profile.Balance += 10;
 			}
 
 			var result = await _profileRepository.UpdateAsync(profile, cancellationToken);
@@ -82,6 +83,18 @@ namespace DatingApp.Application.Services
 
 			return Result.Success;  
 		}
+
+		public async Task<ErrorOr<List<Profile>>> GetAllProfilesAsync(CancellationToken cancellationToken)
+		{
+			var errorOrProfiles = await _profileRepository.GetAllAsync(cancellationToken);
+			if (errorOrProfiles.IsError)
+			{
+				return errorOrProfiles.Errors;
+			}
+
+			return errorOrProfiles.Value;
+		}
+
 
 		public async Task<ErrorOr<Success>> AddHobbyAsync(
 			Guid userId, ICollection<string> addedHobbies, CancellationToken cancellationToken)

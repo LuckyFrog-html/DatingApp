@@ -47,6 +47,8 @@ namespace DatingApp.Application.Services
 				await SetAchievemntCache(cancellationToken);
 			}
 
+			_cache.TryGetValue("Achievements", out userAchievementData);
+
 			Achievement likesent1 = allAchievements.Value.Find(achievement => achievement.Name == "1likesent");
 			Achievement likesent100 = allAchievements.Value.Find(achievement => achievement.Name == "100likesent");
 
@@ -130,27 +132,36 @@ namespace DatingApp.Application.Services
 				return usersOrError.Errors;
 			}
 
+			var profilesOrError = await _profileService.GetAllProfilesAsync(cancellationToken);
+			if (profilesOrError.IsError)
+			{
+				return profilesOrError.Errors;
+			}
+
 			Achievement day365 = allAchievements.Find(achievement => achievement.Name == "365days");
 			Achievement day30 = allAchievements.Find(achievement => achievement.Name == "30days");
 
 			DateTime dateTime = DateTime.UtcNow;
 
-			foreach (var user in usersOrError.Value)
+			foreach (var profile in profilesOrError.Value)
 			{
+				var user = profile.User;
 				var errorOrAchievements = await _profileService.GetAchievements(user.Id, cancellationToken);
 				if (errorOrAchievements.IsError)
 				{
 					return errorOrAchievements.Errors;
 				}
 
+
+
 				TimeSpan userAge = dateTime - user.CreatedAt;
 				if (userAge > TimeSpan.FromDays(365))
 				{
-					_profileService.AddAchievement(user.Id, day365, cancellationToken);
+					await _profileService.AddAchievement(user.Id, day365, cancellationToken);
 				}
 				if (userAge > TimeSpan.FromDays(30))
 				{
-					_profileService.AddAchievement(user.Id, day30, cancellationToken);
+					await _profileService.AddAchievement(user.Id, day30, cancellationToken);
 				}
 			}
 			return Result.Success;
