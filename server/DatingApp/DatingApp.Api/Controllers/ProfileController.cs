@@ -5,6 +5,8 @@ using DatingApp.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading;
 
 namespace DatingApp.Api.Controllers
@@ -32,7 +34,7 @@ namespace DatingApp.Api.Controllers
 		public async Task<ActionResult<Profile>> GetProfile(CancellationToken cancellationToken)
 		{
 			Guid userId;
-			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")?.ToString(), out userId);
 
 			if (!flag)
 			{
@@ -61,7 +63,7 @@ namespace DatingApp.Api.Controllers
 			(Guid test, CancellationToken cancellationToken)
 		{
 			//Guid userId;
-			//var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			//var flag = Guid.TryParse(HttpContext.User.FindFirstValueValue("UserId")!.ToString(), out userId);
 
 			//if (!flag)
 			//{
@@ -83,7 +85,7 @@ namespace DatingApp.Api.Controllers
 			(CancellationToken cancellationToken)
 		{
 			Guid userId;
-			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")!.ToString(), out userId);
 
 			if (!flag)
 			{
@@ -105,7 +107,7 @@ namespace DatingApp.Api.Controllers
 			(ICollection<string> addedHobbies, CancellationToken cancellationToken)
 		{
 			Guid userId;
-			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")!.ToString(), out userId);
 
 			if (!flag)
 			{
@@ -127,7 +129,7 @@ namespace DatingApp.Api.Controllers
 			CancellationToken cancellationToken) 
 		{
 			//Guid userId;
-			//var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId").ToString(), out userId);
+			//var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId").ToString(), out userId);
 
 			//if (!flag)
 			//{
@@ -181,7 +183,7 @@ namespace DatingApp.Api.Controllers
         public async Task<ActionResult> DeleteProfile(CancellationToken cancellationToken)
         {
 			Guid userId;
-			var flag = Guid.TryParse(HttpContext.User.FindFirst("UserId")!.ToString(), out userId);
+			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")!.ToString(), out userId);
 
 			if (!flag)
 			{

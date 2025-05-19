@@ -29,17 +29,6 @@ namespace DatingApp.Application.Services
 
 			while (!cancellationToken.IsCancellationRequested)
 			{
-
-				
-
-				var now = DateTime.UtcNow;
-				var nextRun = now.Date.AddDays(1); // Следующий день в 00:00:00
-
-				var delay = nextRun - now;
-				_logger.LogInformation("Next run at {NextRun} (in {Delay})", nextRun, delay);
-
-				await Task.Delay(delay, cancellationToken);
-
 				try
 				{
 					using (var scope = _serviceProvider.CreateScope())
@@ -48,12 +37,21 @@ namespace DatingApp.Application.Services
 							.GetRequiredService<IAchievementIssuingService>();
 
 						await achievementService.CheckTimeAchievementAsync(cancellationToken);
+						await achievementService.CheckAllUserAchievementsAsync(cancellationToken);
 					}
 				}
 				catch (Exception ex)
 				{
 					_logger.LogError(ex, "Error in AchievementBackgroundService");
 				}
+
+				var now = DateTime.UtcNow;
+				var nextRun = now.Date.AddDays(1); // Следующий день в 00:00:00
+
+				var delay = nextRun - now;
+				_logger.LogInformation("Next run at {NextRun} (in {Delay})", nextRun, delay);
+
+				await Task.Delay(delay, cancellationToken);
 			}
 		}
 	}

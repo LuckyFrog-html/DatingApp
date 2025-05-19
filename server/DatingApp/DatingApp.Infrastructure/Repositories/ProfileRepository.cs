@@ -52,6 +52,9 @@ namespace DatingApp.Infrastructure.Repositories
 			try
 			{
 				var profiles = await _dbContext.Set<Profile>()
+					.Include(profile => profile.User)
+					.Include(profile => profile.Achievements)
+					.Include(profile => profile.Hobbies)
 					.AsNoTracking()
 					.ToListAsync(cancellationToken);
 
@@ -70,6 +73,7 @@ namespace DatingApp.Infrastructure.Repositories
 				var profile = await _dbContext.Set<Profile>()
 					.Include(p => p.Hobbies)
 					.Include(p => p.Achievements)
+					.Include(p => p.User)
 					.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
 				return profile is not null
@@ -89,6 +93,7 @@ namespace DatingApp.Infrastructure.Repositories
 				var profile = await _dbContext.Set<Profile>()
 					.Include(p => p.Hobbies)
 					.Include(p => p.Achievements)
+					.Include(p => p.User)
 					.FirstOrDefaultAsync(p => p.Name == name, cancellationToken);
 
 				return profile is not null
