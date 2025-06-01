@@ -10,9 +10,9 @@ namespace DatingApp.Domain.Interfaces.Repositories
 {
 	public interface IActionRepository : IRepository<Entities.Action>
 	{
-		Task<ErrorOr<User>> GetByNameAsync(string name, CancellationToken cancellationToken);
-		Task<ErrorOr<User>> GetByOwnerIdAsync(Guid guid, CancellationToken cancellationToken);
-		Task<ErrorOr<User>> GetBySlaveIdAsync(Guid guid, CancellationToken cancellationToken);
+		Task<ErrorOr<Domain.Entities.Action>> GetByNameAsync(string name, CancellationToken cancellationToken);
+		Task<ErrorOr<List<Domain.Entities.Action>>> GetByMasterIdAsync(Guid guid, CancellationToken cancellationToken);
+		Task<ErrorOr<List<Domain.Entities.Action>>> GetBySlaveIdAsync(Guid guid, CancellationToken cancellationToken);
 
 	}
 }

@@ -131,17 +131,15 @@ namespace DatingApp.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("MasterId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("MasterId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SlaveId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("SlaveId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

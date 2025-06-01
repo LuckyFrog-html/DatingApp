@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   postgres_server:
     image: postgres:16.0
@@ -6,12 +5,10 @@ services:
       POSTGRES_DB: MyAppDb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: test
-    ports:
-      - 5432:5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
-      - adminer-network
+      - app-network
 
   adminer:
     image: adminer
@@ -22,26 +19,28 @@ services:
     depends_on:
       - postgres_server
     networks:
-      - adminer-network
-  
-  rabbitmq:
-    image: rabbitmq:4.0-management
-    hostname: rabbitmq
-    restart: always
-    environment:
-      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: -rabbit disk_free_limit 2147483648
-      RABBITMQ_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json
+      - app-network
+    
+  api:
+    image: darkexist/datingapp-api:latest
     ports:
-      - 15672:15672
-      - 5672:5672
-    volumes:
-      - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
-      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+      - "5000:5000"
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres_server;Port=5432;Database=MyAppDb;Username=postgres;Password=test
+      - EmailSettings__Username=datingappbot@mail.ru
+      - EmailSettings__Password=f9ApGSUFHL28bGkeurf6
+      - JwtOptions__SecretKey=your-super-secret-key-here-min-32-chars
+      - JwtOptions__ExpiresInMinutes=60
+    depends_on:
+      - postgres_server
     networks:
-      - adminer-network
+      - app-network
 
 volumes:
   postgres-data:
 
 networks:
-  adminer-network:
+  app-network:
+    driver: bridge

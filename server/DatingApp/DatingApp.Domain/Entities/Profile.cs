@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DatingApp.Domain.Entities
@@ -16,9 +17,13 @@ namespace DatingApp.Domain.Entities
 		public string Town { get; set; } = string.Empty;
 		public bool Gender { get; set; } = false;
 		public BigInteger Balance { get; set; } = 0;
+		[JsonIgnore]
 		public User User { get; set; }
 		public bool IsDeleted { get; set; } = false;
+		
+		[JsonIgnore]
 		public ICollection<Hobby>? Hobbies { get; set; } = new List<Hobby>();
+		[JsonIgnore]
 		public ICollection<Achievement>? Achievements { get; set; } = new List<Achievement>();
 
 		public Profile() { }

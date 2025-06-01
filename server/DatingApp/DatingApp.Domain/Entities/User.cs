@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DatingApp.Domain.Entities
@@ -19,6 +20,7 @@ namespace DatingApp.Domain.Entities
 		public DateTime LastLogin{ get; set; }
 		public ICollection<Role> Roles { get; set; } = new List<Role>();
 		public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
+		[JsonIgnore]
 		public Profile Profile { get; set; }
 
 		public User() { }

@@ -59,43 +59,43 @@ namespace DatingApp.Application.Services
 			Achievement likegot100 = allAchievements.Value.Find(achievement => achievement.Name == "100likegot");
 
 			Achievement dislikegot1 = allAchievements.Value.Find(achievement => achievement.Name == "1dislikegot");
-			Achievement dislikegot100 = allAchievements.Value.Find(achievement => achievement.Name == "100dislikegot");
+				Achievement dislikegot100 = allAchievements.Value.Find(achievement => achievement.Name == "100dislikegot");
 
 			var userInfo = userAchievementData[userId];
-			if (userInfo.LikesSent > 100)
+			if (userInfo.LikesSent >= 100)
 			{
-				_profileService.AddAchievement(userId, likesent100, cancellationToken);
+				await _profileService.AddAchievement(userId, likesent100, cancellationToken);
 			}
 
-			if (userInfo.LikesSent > 1)
+			if (userInfo.LikesSent >= 1)
 			{
-				_profileService.AddAchievement(userId, likesent1, cancellationToken);
+				await _profileService.AddAchievement(userId, likesent1, cancellationToken);
 			}
-			if (userInfo.DislikesSent > 100)
+			if (userInfo.DislikesSent >= 100)
 			{
-				_profileService.AddAchievement(userId, dislikesent100, cancellationToken);
+				await _profileService.AddAchievement(userId, dislikesent100, cancellationToken);
 			}
-			if (userInfo.DislikesSent > 1)
+			if (userInfo.DislikesSent >= 1)
 			{
-				_profileService.AddAchievement(userId, dislikesent1, cancellationToken);
-			}
-
-			if (userInfo.LikesGot > 100)
-			{
-				_profileService.AddAchievement(userId, likegot100, cancellationToken);
-			}
-			if (userInfo.LikesGot > 1)
-			{
-				_profileService.AddAchievement(userId, likegot1, cancellationToken);
+				await _profileService.AddAchievement(userId, dislikesent1, cancellationToken);
 			}
 
-			if (userInfo.DislikesGot > 100)
+			if (userInfo.LikesGot >= 100)
 			{
-				_profileService.AddAchievement(userId, dislikegot100, cancellationToken);
+				await _profileService.AddAchievement(userId, likegot100, cancellationToken);
 			}
-			if (userInfo.DislikesGot > 1)
+			if (userInfo.LikesGot >= 1)
 			{
-				_profileService.AddAchievement(userId, dislikegot1, cancellationToken);
+				await _profileService.AddAchievement(userId, likegot1, cancellationToken);
+			}
+
+			if (userInfo.DislikesGot >= 100)
+			{
+				await _profileService.AddAchievement(userId, dislikegot100, cancellationToken);
+			}
+			if (userInfo.DislikesGot >= 1)
+			{
+				await _profileService.AddAchievement(userId, dislikegot1, cancellationToken);
 			}
 
 			return Result.Success;

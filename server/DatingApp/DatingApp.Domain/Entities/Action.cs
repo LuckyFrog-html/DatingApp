@@ -9,12 +9,12 @@ namespace DatingApp.Domain.Entities
 	public class Action
 	{
 		public Guid Id { get; set; }
-		public string MasterId { get; set; }
-		public string SlaveId { get; set; }
+		public Guid MasterId { get; set; }
+		public Guid SlaveId { get; set; }
 		public string Name { get; set; }
 
 		public Action() { }
-		public Action(Guid id, string masterId, string slaveId, string name)
+		public Action(Guid id, Guid masterId, Guid slaveId, string name)
 		{
 			Id = id;
 			MasterId = masterId;

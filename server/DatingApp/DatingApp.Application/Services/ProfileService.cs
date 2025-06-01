@@ -197,8 +197,7 @@ namespace DatingApp.Application.Services
 			userProfile.Description = updatedProfileInfo.Description;
 			userProfile.Age = updatedProfileInfo.Age;
 			userProfile.Town = updatedProfileInfo.Town;
-
-
+			userProfile.Gender = updatedProfileInfo.Gender;
 
 			return await _profileRepository.UpdateAsync(userProfile, cancellationToken);
 		}

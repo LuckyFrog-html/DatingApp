@@ -37,6 +37,7 @@ namespace DatingApp.Infrastructure
 			services.AddScoped<IProfileRepository, ProfileRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IAchievementRepository, AchievementRepository>();
+			services.AddScoped<IActionRepository, ActionRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			return services;
 		}

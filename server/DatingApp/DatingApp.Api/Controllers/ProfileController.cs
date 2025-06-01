@@ -2,6 +2,7 @@ using DatingApp.Application.Interfaces;
 using DatingApp.Application.Models.Requests;
 using DatingApp.Application.Services;
 using DatingApp.Domain.Entities;
+using DatingApp.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
@@ -19,19 +20,22 @@ namespace DatingApp.Api.Controllers
 		private readonly ILogger<ProfileController> _logger;
 		private readonly IProfileService _profileService;
 		private readonly IUserService _userService;
+		private readonly IHobbyRepository _hobbyRepository;
 
 		public ProfileController(ILogger<ProfileController> logger,
 			IProfileService profileService,
-			IUserService userService)
+			IUserService userService,
+			IHobbyRepository hobbyRepository)
 		{
 			_logger = logger;
 			_profileService = profileService;
 			_userService = userService;
+			_hobbyRepository = hobbyRepository;
 		}
 
 		[Authorize(Policy = "user")]
 		[HttpGet]
-		public async Task<ActionResult<Profile>> GetProfile(CancellationToken cancellationToken)
+		public async Task<ActionResult<object>> GetProfile(CancellationToken cancellationToken)
 		{
 			Guid userId;
 			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")?.ToString(), out userId);
@@ -47,7 +51,22 @@ namespace DatingApp.Api.Controllers
 				return BadRequest();
 			}
 
-			return Ok(result.Value);
+			var profile = result.Value;
+			var balanceString = profile.Balance.ToString();
+			return Ok(
+				new {
+					profile.Id,
+					profile.Name,
+					profile.Description,
+					profile.Age,
+					profile.Town,
+					profile.Gender,
+					balanceString,
+					profile.IsDeleted,
+					profile.Hobbies,
+					profile.Achievements
+				}
+			);
 		}
 
 		[Authorize(Policy = "user")]
@@ -57,19 +76,19 @@ namespace DatingApp.Api.Controllers
 			return 1;
 		}
 
-		//[Authorize(Policy = "user")]
+		[Authorize(Policy = "user")]
 		[HttpGet("achievements")]
 		public async Task<ActionResult<ICollection<Achievement>>> GetAchievemnts
-			(Guid test, CancellationToken cancellationToken)
+			(CancellationToken cancellationToken)
 		{
-			//Guid userId;
-			//var flag = Guid.TryParse(HttpContext.User.FindFirstValueValue("UserId")!.ToString(), out userId);
+			Guid userId;
+			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")!.ToString(), out userId);
 
-			//if (!flag)
-			//{
-			//	return Unauthorized();
-			//}
-			var result = await _profileService.GetAchievements(test, cancellationToken);
+			if (!flag)
+			{
+				return Unauthorized();
+			}
+			var result = await _profileService.GetAchievements(userId, cancellationToken);
 
 			if (result.IsError)
 			{
@@ -123,6 +142,19 @@ namespace DatingApp.Api.Controllers
 			return Ok(result.Value);
 		}
 
+		[HttpGet("allhobbies")]
+		public async Task<ActionResult<ICollection<Hobby>>> GetAllHobbies(CancellationToken cancellationToken)
+		{
+			var result = await _hobbyRepository.GetAllAsync(cancellationToken);
+
+			if (result.IsError)
+			{
+				return BadRequest();
+			}
+
+			return Ok(result.Value);
+		}
+
 		//[Authorize(Policy = "user")]
 		[HttpPost("createprofile")]
 		public async Task<ActionResult> CreateProfile(string email, RegisterProfileRequest profileReq,
@@ -159,7 +191,7 @@ namespace DatingApp.Api.Controllers
 			(ProfilePatchRequest updatedProfileInfo, CancellationToken cancellationToken)
 		{
 			Guid userId;
-			var flag = Guid.TryParse(User.FindFirst("UserId")!.ToString(), out userId);
+			var flag = Guid.TryParse(HttpContext.User.FindFirstValue("UserId")!.ToString(), out userId);
 
 			if (!flag)
 			{

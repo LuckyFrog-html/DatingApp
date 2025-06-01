@@ -20,6 +20,7 @@ namespace DatingApp.Infrastructure.Config
 				.WithMany(u => u.RefreshTokens)
 				.HasForeignKey(rt => rt.Id)
 				.OnDelete(DeleteBehavior.Cascade);
+
 		}
 	}
 }

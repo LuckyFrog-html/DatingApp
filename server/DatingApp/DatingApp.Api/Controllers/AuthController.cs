@@ -109,13 +109,8 @@ namespace DatingApp.Api.Controllers
 
 			var profile = await _profileService.GetProfileByIdAsync(user.Id, cancellationToken);
 
-			if (profile.IsError)
-			{
-				return StatusCode(406);
-			}
-
-            LoginResponse loginResponse = result.Value;
-            SetJwtCookie(HttpContext, loginResponse.AccessToken, loginResponse.RefreshToken);
+			LoginResponse loginResponse = result.Value;
+			SetJwtCookie(HttpContext, loginResponse.AccessToken, loginResponse.RefreshToken);
 
             return Ok(loginResponse);
 		}
@@ -129,7 +124,7 @@ namespace DatingApp.Api.Controllers
 			{
 				HttpOnly = false,
 				Secure = true,
-				SameSite = SameSiteMode.Lax,
+				SameSite = SameSiteMode.None,
 				Expires = DateTime.UtcNow.AddMinutes(60)
 			});
 
@@ -137,7 +132,7 @@ namespace DatingApp.Api.Controllers
 			{
 				HttpOnly = true,
 				Secure = true,
-				SameSite = SameSiteMode.Lax
+				SameSite = SameSiteMode.None
 			});
 		}
 
